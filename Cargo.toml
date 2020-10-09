@@ -11,5 +11,5 @@ name="aqrun_lrbg" # crate name short for "Learning rust by games"
 path="src/lib.rs"
 
 [dependencies]
-rand = "*"
-crossterm = "*"
+rand = "0.7.3"
+crossterm = "0.18.0"
