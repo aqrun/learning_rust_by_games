@@ -69,6 +69,7 @@ impl App {
 
     pub fn update_without_input(&mut self) -> Result<String, String> {
         self.bird_y += 1;
+        self.bar1_x -= 1;
 
         if self.bird_y >= self.high {
             return Err(String::from("Game over"));
