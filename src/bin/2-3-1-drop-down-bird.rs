@@ -9,6 +9,7 @@ use crossterm::{
     terminal,
 };
 
+/// 下落的小鸟
 struct App {
     pub high: i32,
     pub width: i32,
