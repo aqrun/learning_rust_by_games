@@ -71,7 +71,7 @@ impl App {
                 if self.canvas[i][j] == 2 {
                     self.canvas[i][j] = 0;
                     if i > 0 {
-                        self.canvas[(i - 1) as usize][j as usize] = 2;
+                        self.set_pos_val(i - 1, j, 2);
                     }
                 }
             }
@@ -107,7 +107,7 @@ impl App {
                         self.set_canvas(1);
                     },
                     KeyCode::Char(' ') => {
-                        self.canvas[(self.position_y - 1) as usize][self.position_x as usize] = 2;
+                        self.set_pos_val(self.position_y - 1, self.position_x, 2);
                     },
                     KeyCode::Esc => {
                         return Ok("Exit");
@@ -121,6 +121,10 @@ impl App {
 
     pub fn set_canvas(&mut self, val: i32) {
         self.canvas[self.position_y as usize][self.position_x as usize] = val;
+    }
+
+    pub fn set_pos_val(&mut self, pos_x: i32, pos_y: i32, val: i32) {
+        self.canvas[pos_y as usize][pos_x as usize] = val;
     }
 }
 
