@@ -51,6 +51,8 @@ impl App {
                     print!(" ");
                 } else if self.canvas[i][j] == 1 {
                    print!("*");
+                } else if self.canvas[i][j] == 2 {
+                    print!("|");
                 }
             }
             println!("|");
@@ -64,6 +66,17 @@ impl App {
     }
 
     pub fn update_without_input(&mut self) -> Result<String, String> {
+        for i in 0..HIGH {
+            for j in 0..WIDTH {
+                if self.canvas[i][j] == 2 {
+                    self.canvas[i][j] = 0;
+                    if i > 0 {
+                        self.canvas[(i - 1) as usize][j as usize] = 2;
+                    }
+                }
+            }
+        }
+
         thread::sleep(Duration::from_millis(150));
         Ok(String::from(""))
     }
@@ -92,6 +105,9 @@ impl App {
                         self.set_canvas(0);
                         self.position_y += 1;
                         self.set_canvas(1);
+                    },
+                    KeyCode::Char(' ') => {
+                        self.canvas[(self.position_y - 1) as usize][self.position_x as usize] = 2;
                     },
                     KeyCode::Esc => {
                         return Ok("Exit");
